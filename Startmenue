@@ -1,0 +1,80 @@
+
+
+// @ main camera
+
+var backgroundTexture : Texture2D;
+var backgroundSmallTexture : Texture2D;
+var AgentsText : GUIStyle;
+//var OtherText : GUIStyle;
+var sichtbar = false;
+var MusikAktiv = true;
+var MusikText = "An";
+static var Agenten_Wert = 0;		// nach zurück eventuell Werte RESETEN
+
+function Update () {
+
+}
+
+function OnGUI() {
+
+// Hintergrund Fullscreen
+GUI.DrawTexture(Rect(0,0,Screen.width,Screen.height),backgroundTexture);
+
+GUI.DrawTexture(Rect(Screen.width*0.75-3,Screen.height/2,Screen.width*0.25,Screen.height/2),backgroundSmallTexture);
+
+// AgentsGroup
+GUI.BeginGroup(Rect(Screen.width*0.75-3,0,Screen.width,Screen.height));
+
+	GUI.Box(Rect(0,2,Screen.width*0.25,Screen.height/2),"");
+	GUI.Label(Rect(20,25,250,Screen.height), "Mit wievielen Agenten starten?", AgentsText);
+
+// Agenten Slider
+	GUI.BeginGroup(Rect(20,25,200,200));		
+	GUI.Box(Rect(0,45,100,20),"");
+	Agenten_Wert = GUI.HorizontalSlider(Rect(0,50,100,20),Agenten_Wert,0,100);		// Gewichtung Agenten
+	GUI.Label(Rect(105,45,100,20),"" + Agenten_Wert);
+	
+GUI.EndGroup();
+
+// MenueGroup
+GUI.BeginGroup(Rect(20,0,300,300));
+	if(GUI.Button(Rect(0,125,200,20), "BEDIENUNGSANLEITUNG")){		// Bedienungsanleitung
+		Application.LoadLevel("Settings");
+	}
+	if(GUI.Button(Rect(0,150,100,20), "START")){			// Spiel starten
+		Application.LoadLevel("InGameSettings");
+	}
+
+	if(GUI.Button(Rect(0,175,100,20), "BEENDEN")){		// Spiel Beenden
+		sichtbar = true;
+	}
+	if(sichtbar) {											// Sicher Beenden?
+		if(GUI.Button(Rect(0,200,100,20), "JA")){
+			Application.Quit();
+		}
+		if(GUI.Button(Rect(100,200,100,20), "NEIN")){
+			sichtbar = false;
+		}
+	}
+GUI.EndGroup();
+
+// Musik Button
+
+GUI.BeginGroup(Rect(20,250,300,300));
+
+    if(MusikAktiv == false) {
+       if(GUI.Button(Rect(0,0,100,20), "MUSIK AUS")) {		// Musik ausschalten
+         MusikAktiv = true;
+		 AudioListener.volume = 1;
+       }
+    }
+    if(MusikAktiv == true) {
+       if(GUI.Button(Rect(0,0,100,20), "MUSIK AN")) {		// Musik einschalten
+         MusikAktiv = false;
+		 AudioListener.volume = 0;
+       }
+    }
+    
+GUI.EndGroup();
+
+}
