@@ -1,0 +1,56 @@
+
+// @ main camera
+
+var Design : GUIStyle;
+var DesignBedienungsanleitung : GUIStyle;
+var backgroundTexture : Texture2D;
+var Keys : GUIStyle;
+var Back : GUIStyle;
+
+function OnGUI() {
+
+// Hintergrund Fullscreen
+GUI.DrawTexture(Rect(0,0,Screen.width,Screen.height),backgroundTexture);
+
+GUILayout.BeginArea(Rect(0,0,Screen.width,Screen.height));
+
+//GUI.Box(Rect(0,0,Screen.width,Screen.height),"");
+GUI.Label(Rect(Screen.width/8,Screen.height/20,Screen.width,Screen.height),"Bedienungsanleitung", DesignBedienungsanleitung);
+
+
+GUI.BeginGroup(Rect(Screen.width/4,20,800,600));
+
+GUI.Label(Rect(337,549,120,25), "ZURÜCK",Back);
+if(GUI.Button(Rect(325,545,100,30), "")){				// zurück ins Startmenue
+	Application.LoadLevel("Startmenue");
+}
+GUI.Box(Rect(0,120,25,25), "");
+GUI.Label(Rect(2,122,25,25), "W",Keys);
+	GUI.Label(Rect(50,115,150,30),"Vorwärts", Design);		// Erlauterung der Steuerung	
+
+GUI.Box(Rect(0,170,25,25), "");
+GUI.Label(Rect(4,172,25,25), "A",Keys);
+	GUI.Label(Rect(50,165,150,30),"Links", Design);
+
+GUI.Box(Rect(210,120,25,25), "");
+GUI.Label(Rect(214,122,25,25), "S",Keys);
+	GUI.Label(Rect(260,115,150,30),"Rückwärts", Design);
+
+GUI.Box(Rect(210,170,25,25), "");
+GUI.Label(Rect(214,172,25,25), "D",Keys);
+	GUI.Label(Rect(260,165,150,30),"Rechts", Design);
+
+GUI.Box(Rect(0,445,65,25), "");
+GUI.Label(Rect(2,447,100,25), "MAUS",Keys);
+	GUI.Label(Rect(100,440,150,30),"Blickwinkel", Design);
+
+GUI.Box(Rect(0,230,25,120), "");
+GUI.Label(Rect(4,233,25,120), "E\nN\nT\nE\nR",Keys);
+	GUI.Label(Rect(50,225,300,300),"Fangspiel starten.\nBitte klicken Sie einen \nAgenten mit der Maus \nan und steuern diesen \nmit der Tastatur", Design);
+
+
+GUI.EndGroup();
+
+GUILayout.EndArea();
+
+}
