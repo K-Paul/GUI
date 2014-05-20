@@ -1,0 +1,58 @@
+
+// @ main camera
+
+static var Alignement_Wert = 0;
+static var Cohesion_Wert = 0;
+static var Separation_Wert = 0;
+static var Velocity_Wert = 0;
+var Agenten_Wert : int;				
+
+Agenten_Wert = Startmenue.Agenten_Wert;		
+
+function Update() {
+}
+
+function OnGUI() {
+
+GUI.BeginGroup(Rect(0,0,Screen.width,100));	
+
+	if(GUI.Button(Rect(Screen.width-125,25,100,20), "QUIT")){			// zurück ins Startmenue
+		Application.LoadLevel("Startmenue");
+		Startmenue.Agenten_Wert = 0;									// Agent_Wert Reset
+	}
+	
+GUI.EndGroup();
+
+GUI.BeginGroup(Rect(0,0,Screen.width,100));
+
+	// Interaktive Parameter
+	
+	GUI.Box(Rect(25,25,100,20), "ALIGNEMENT");				
+	GUI.Box(Rect(25,45,100,20),"");
+	Alignement_Wert = GUI.HorizontalSlider(Rect(25,50,100,20),Alignement_Wert,0,100);	// Gewichtung Alignement
+	GUI.Label(Rect(75,75,100,20),"" + Alignement_Wert);
+
+	GUI.Box(Rect(130,25,100,20), "COHESION");
+	GUI.Box(Rect(130,45,100,20),"");
+	Cohesion_Wert = GUI.HorizontalSlider(Rect(130,50,100,20),Cohesion_Wert,0,100);		// Gewichtung Cohesion
+	GUI.Label(Rect(180,75,100,20),"" + Cohesion_Wert);
+
+
+	GUI.Box(Rect(235,25,100,20), "SEPERATION");
+	GUI.Box(Rect(235,45,100,20),"");
+	Separation_Wert = GUI.HorizontalSlider(Rect(235,50,100,20),Separation_Wert,0,100);	// Gewichtung Separation
+	GUI.Label(Rect(285,75,100,20),"" + Separation_Wert);
+
+	GUI.Box(Rect(340,25,100,20), "VELOCITY");
+	GUI.Box(Rect(340,45,100,20),"");
+	Velocity_Wert = GUI.HorizontalSlider(Rect(340,50,100,20),Velocity_Wert,0,100);		// Gewichtung Velocity
+	GUI.Label(Rect(390,75,100,20),"" + Velocity_Wert);
+
+	GUI.Box(Rect(445,25,100,20), "AGENTS");
+	GUI.Box(Rect(445,45,100,20),"");
+	Agenten_Wert = GUI.HorizontalSlider(Rect(445,50,100,20),Agenten_Wert,0,100);		// Gewichtung Agenten
+	GUI.Label(Rect(495,75,100,20),"" + Agenten_Wert);
+	
+GUI.EndGroup();
+
+}
